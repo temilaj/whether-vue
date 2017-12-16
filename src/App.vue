@@ -1,14 +1,13 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
-}
+  name: 'app',
+};
 </script>
 
 <style>
@@ -19,5 +18,23 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.logo { 
+  color: #f8f8f8; 
+  font-family: 'helvetica neue', arial, sans-serif;
+  font-size: 3rem; 
+  font-weight: 500; 
+  line-height: 2rem;
+}
+.logo__container { 
+  background-color: #2c3e50;
+  box-shadow: 1rem .2rem 2rem rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8rem;
+  min-width: 25rem;
+  margin: 0 33%;
+  border-radius: 50%;
 }
 </style>

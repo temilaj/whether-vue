@@ -1,34 +1,36 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <div class="logo__container">
+      <div class="logo">Whether?</div>
+    </div>
+    <h2>{{ message }}</h2>
+    <input v-model="cityName" placeholder="enter your current city" class="form__input">
+    <button id="search" class="btn" @click="handleCitySearch" :disabled="loading || !isValid">Search</button>
+    <p class="error" v-if="error"> {{ error }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Home',
-  data () {
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
+      message: 'Weather details all around you!',
+      cityName: '',
+      weatherData: null,
+      error: '',
+      loading: false,
+    };
+  },
+  methods: {
+    handleCitySearch() {},
+  },
+  computed: {
+    isValid() {
+      return !!this.cityName;
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -46,5 +48,41 @@ li {
 }
 a {
   color: #42b983;
+}
+.form__input {
+  background: #dfdcdc;
+  padding: 0.5em;
+  border-radius: 0.4rem;
+  border: 0 solid #ececec;
+  height: 2rem;
+  min-width: 33%;
+  text-align: center;
+  font-size: 0.8rem;
+}
+.form__input:focus {
+  background: #fcfcfc;
+  outline: none;
+  border: 0.06rem solid #6db896;
+}
+.btn {
+  border-radius: 0.4rem;
+  padding: 0.4rem 1.4rem;
+  border: 1px solid #6db896;;
+  font-size: inherit;
+  line-height: 1.85714286em;
+  cursor: pointer;
+}
+.btn:focus {
+  outline: none;
+}
+.btn:hover {
+  background-color: #6db896;
+  color: #fff;
+}
+.error {
+  color: crimson;
+}
+:disabled {
+  cursor: not-allowed;
 }
 </style>

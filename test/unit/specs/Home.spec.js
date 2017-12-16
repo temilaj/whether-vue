@@ -1,30 +1,47 @@
-import Vue from "vue";
-import Home from "@/components/Home";
+import Vue from 'vue';
+import Home from '@/components/Home';
 
-describe("Home.vue", () => {
-  it("should render correct contents", () => {
+describe('Home.vue', () => {
+  it('should render correct contents', () => {
     const Constructor = Vue.extend(Home);
     const HomeComponent = new Constructor().$mount();
-    expect(HomeComponent.$el.querySelector(".hello h1").textContent).to.equal(
-      "Welcome to Your Vue.js App"
+    expect(HomeComponent.$el.querySelector('h2').textContent).to.equal(
+      'Weather details all around you!',
     );
-    expect(HomeComponent.$el.querySelector(".logo").textContent).to.equal(
-      "Whether?"
+    expect(HomeComponent.$el.querySelector('.logo').textContent).to.equal(
+      'Whether?',
     );
   });
-  it("should have appropriate methods", () => {
-    const Constructor = Vue.extend(Home);
-    const HomeComponent = new Constructor().$mount();
-    expect(typeof HomeComponent.methods.handleCitySearch).toBe("function");
+  it('should have appropriate methods', () => {
+    expect(typeof Home.methods.handleCitySearch).to.equal('function');
+    expect(typeof Home.computed.isValid).to.equal('function');
   });
-  it("sets the correct default data", () => {
-    const Constructor = Vue.extend(Home);
-    const HomeComponent = new Constructor().$mount();
-    expect(typeof HomeComponent.data).toBe("function");
-    const defaultData = HomeComponent.data();
-    expect(defaultData.message).toBe("Weather details all around you!");
-    expect(defaultData.error).toBe("");
-    expect(defaultData.weatherData).toBe("");
-    expect(defaultData.loading).toBe(false);
+  it('sets the correct default data', () => {
+    expect(typeof Home.data).to.equal('function');
+    const defaultData = Home.data();
+    expect(defaultData.message).to.equal('Weather details all around you!');
+    expect(defaultData.cityName).to.equal('');
+    expect(defaultData.error).to.equal('');
+    expect(defaultData.weatherData).to.equal(null);
+    expect(defaultData.loading).to.equal(false);
+  });
+  it("should disable the search button when the 'cityName' field is falsy or loading is true", done => {
+    const HomeComponent = new Vue(Home).$mount();
+    HomeComponent.cityName = '';
+    expect(HomeComponent.isValid).to.equal(false);
+    expect(HomeComponent.$el.querySelector('#search').disabled).to.equal(true);
+    done();
+  });
+  it("should enable the search button when the 'cityName' field is truthy and loading is false", done => {
+    const HomeComponent = new Vue(Home).$mount();
+    HomeComponent.cityName = 'lagos';
+    HomeComponent.loading = false;
+    expect(HomeComponent.isValid).to.equal(true);
+    Vue.nextTick(() => {
+      expect(HomeComponent.$el.querySelector('#search').disabled).to.equal(
+        false,
+      );
+      done();
+    });
   });
 });
