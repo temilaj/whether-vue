@@ -1,4 +1,8 @@
 # whether-vue
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) 
+[![Build Status](https://travis-ci.org/temilaj/whether-vue.svg?branch=master)](https://travis-ci.org/temilaj/whether-vue) 
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
+
 
 > A Vue.js project
 
@@ -27,4 +31,7 @@ npm run e2e
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## LICENSE
+
+#### [MIT](./LICENSE) © [Temi Lajumoke](https://temilajumoke.com)

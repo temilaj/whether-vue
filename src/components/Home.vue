@@ -4,7 +4,7 @@
       <div class="logo">Whether?</div>
     </div>
     <h2>{{ message }}</h2>
-    <input v-model="cityName" placeholder="enter your current city" class="form__input">
+    <input name="search" v-model="cityName" placeholder="enter your current city" class="form__input">
     <button id="search" class="btn" @click="handleCitySearch" :disabled="loading || !isValid">Search</button>
     <div class="container">
       <p class="!loader" v-if="loading"></p>
