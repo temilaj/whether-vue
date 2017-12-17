@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Home from '@/components/Home';
 
+import cityList from '../mockData/cityList';
+
 describe('Home.vue', () => {
   it('should render correct contents', () => {
     const Constructor = Vue.extend(Home);
@@ -20,10 +22,15 @@ describe('Home.vue', () => {
     expect(typeof Home.data).to.equal('function');
     const defaultData = Home.data();
     expect(defaultData.message).to.equal('Weather details all around you!');
-    expect(defaultData.cityName).to.equal('');
+    expect(defaultData.cityList).to.deep.equal([]);
     expect(defaultData.error).to.equal('');
-    expect(defaultData.weatherData).to.equal(null);
     expect(defaultData.loading).to.equal(false);
+  });
+  it('should convert a given Kelvin temperature to Celcius', () => {
+    expect(typeof Home.data).to.equal('function');
+    expect(Home.methods.formatTemperature(273)).to.equal(0);
+    expect(Home.methods.formatTemperature(373)).to.equal(100);
+    expect(Home.methods.formatTemperature(305)).to.equal(32);
   });
   it("should disable the search button when the 'cityName' field is falsy or loading is true", done => {
     const HomeComponent = new Vue(Home).$mount();
@@ -43,5 +50,13 @@ describe('Home.vue', () => {
       );
       done();
     });
+  });
+  it("should delete city ", done => {
+    const HomeComponent = new Vue(Home).$mount();
+    HomeComponent.cityList = cityList;
+    HomeComponent.deleteCity(2141224);
+    expect(HomeComponent.cityList.filter(city => city.id === 2141224)).to.deep.equal([]);
+    expect(HomeComponent.cityList.filter(city => city.id !== 2141224).length).to.deep.equal(2);
+    done();
   });
 });
