@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import WeatherService from '../services/WeatherService';
+
 export default {
   name: 'Home',
   data() {
