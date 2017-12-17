@@ -35,7 +35,6 @@
             </ul>
             <br/>
             <span class="options">
-              <button class="btn btn--action">Edit</button>
               <button id="delete" class="btn btn--action" @click="deleteCity(weatherData.id)"> &times;</button>
             </span>
           </div>
