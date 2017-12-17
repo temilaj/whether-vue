@@ -4,7 +4,7 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 
-> Nope. that's not a spelling error. It's acutally Whether? Get it? Never mind!. It's just a sample weather app built with Vue js. 
+> Nope. that's not a spelling error. It's acutally Whether? Get it? Never mind!. It's just a sample weather app built with Vue js. Want to try out the app? Check it out here [http://garageprojects.temilajumoke.com/#/](http://garageprojects.temilajumoke.com/#/)
 
 ## Build Setup
 
@@ -17,6 +17,9 @@ npm run dev
 
 # build for production with minification
 npm run build
+
+# serve production app
+npm start
 
 # build for production and view the bundle analyzer report
 npm run build --report
