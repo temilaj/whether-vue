@@ -1,10 +1,10 @@
-# whether-vue
+# whether?
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) 
 [![Build Status](https://travis-ci.org/temilaj/whether-vue.svg?branch=master)](https://travis-ci.org/temilaj/whether-vue) 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 
-> Sample weather app built with Vue js
+> Nope. that's not a spelling error. It's acutally Whether? Get it? Never mind!. It's just a sample weather app built with Vue js. 
 
 ## Build Setup
 

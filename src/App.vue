@@ -19,6 +19,23 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+.container{
+  position: relative;
+}
+a {
+  color: #42b983;
+}
 .logo { 
   color: #f8f8f8; 
   font-family: 'helvetica neue', arial, sans-serif;

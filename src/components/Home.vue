@@ -7,36 +7,12 @@
     <input name="search" v-model="cityName" placeholder="enter your current city" class="form__input">
     <button id="search" class="btn" @click="handleCitySearch" :disabled="loading || !isValid">Search</button>
     <div class="container">
-      <p class="!loader" v-if="loading"></p>
+      <p class="loader" v-if="loading"></p>
       <p class="error" v-if="error"> {{ error }}</p>
       <div v-if="cityList.length > 0" >
         <div class="card--wrapper">
           <div class="card" v-for="(weatherData, index) in cityList" :key="index">
-            <p>
-              {{ weatherData.name }}, {{ weatherData.sys.country}}
-            </p>
-            <p>humidity: {{ weatherData.main.humidity }} </p>
-            <p>pressure: {{ weatherData.main.pressure }} </p>
-            <p>
-              temperature: {{ formatTemperature(weatherData.main.temp) }} &deg;C
-              max: {{  formatTemperature(weatherData.main.temp_max) }} &deg;C
-              min: {{  formatTemperature(weatherData.main.temp_min) }} &deg;C
-            </p>
-            <p>wind: speed: {{  weatherData.wind.speed }}
-              degree: {{  weatherData.wind.deg }}
-            </p>
-            <ul>
-              <li v-for="(weather, index) in weatherData.weather" :key="index">
-                <span>{{ weather.main }}</span>
-                <span>{{ weather.description }}</span>
-                <span>{{ weather.icon }}</span>
-                <span></span>
-              </li>
-            </ul>
-            <br/>
-            <span class="options">
-              <button id="delete" class="btn btn--action" @click="deleteCity(weatherData.id)"> &times;</button>
-            </span>
+            <weather-card :weatherData="weatherData"  v-on:handleDelete="deleteCity"></weather-card>
           </div>
         </div>
       </div>
@@ -46,9 +22,13 @@
 
 <script>
 import WeatherService from '../services/WeatherService';
+import WeatherCard from './WeatherCard';
 
 export default {
   name: 'Home',
+  components: {
+    WeatherCard,
+  },
   data() {
     return {
       message: 'Weather details all around you!',
@@ -74,9 +54,6 @@ export default {
         }
       }
     },
-    formatTemperature(temperature) {
-      return parseInt(temperature - 273, 10);
-    },
     deleteCity(cityId) {
       this.cityList = this.cityList.filter(city => city.id !== cityId);
     },
@@ -91,23 +68,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-.container{
-  position: relative;
-}
-a {
-  color: #42b983;
-}
 .form__input {
   background: #dfdcdc;
   padding: 0.5em;
