@@ -26,12 +26,6 @@ describe('Home.vue', () => {
     expect(defaultData.error).to.equal('');
     expect(defaultData.loading).to.equal(false);
   });
-  it('should convert a given Kelvin temperature to Celcius', () => {
-    expect(typeof Home.data).to.equal('function');
-    expect(Home.methods.formatTemperature(273)).to.equal(0);
-    expect(Home.methods.formatTemperature(373)).to.equal(100);
-    expect(Home.methods.formatTemperature(305)).to.equal(32);
-  });
   it("should disable the search button when the 'cityName' field is falsy or loading is true", (done) => {
     const HomeComponent = new Vue(Home).$mount();
     HomeComponent.cityName = '';

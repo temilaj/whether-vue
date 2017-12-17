@@ -39,7 +39,7 @@ export default {
     },
     handleDelete(cityId) {
       this.$emit('handleDelete', cityId);
-    }
+    },
   },
 };
 </script>
