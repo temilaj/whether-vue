@@ -32,14 +32,14 @@ describe('Home.vue', () => {
     expect(Home.methods.formatTemperature(373)).to.equal(100);
     expect(Home.methods.formatTemperature(305)).to.equal(32);
   });
-  it("should disable the search button when the 'cityName' field is falsy or loading is true", done => {
+  it("should disable the search button when the 'cityName' field is falsy or loading is true", (done) => {
     const HomeComponent = new Vue(Home).$mount();
     HomeComponent.cityName = '';
     expect(HomeComponent.isValid).to.equal(false);
     expect(HomeComponent.$el.querySelector('#search').disabled).to.equal(true);
     done();
   });
-  it("should enable the search button when the 'cityName' field is truthy and loading is false", done => {
+  it("should enable the search button when the 'cityName' field is truthy and loading is false", (done) => {
     const HomeComponent = new Vue(Home).$mount();
     HomeComponent.cityName = 'lagos';
     HomeComponent.loading = false;
@@ -51,7 +51,7 @@ describe('Home.vue', () => {
       done();
     });
   });
-  it("should delete city ", done => {
+  it("should delete city ", (done) => {
     const HomeComponent = new Vue(Home).$mount();
     HomeComponent.cityList = cityList;
     HomeComponent.deleteCity(2141224);
