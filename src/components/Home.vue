@@ -39,6 +39,13 @@ export default {
     };
   },
   methods: {
+    /**
+     * 
+     * handles search for the city a user attempts to search for
+     * and assigns the response to the appropriate properties based on results.
+     * 
+     * @returns {undefined}
+     */ 
     async handleCitySearch() {
       this.loading = true;
       try {
@@ -54,11 +61,24 @@ export default {
         }
       }
     },
+    /**
+     * takes in a city Id and deletes the city from the list of cities 
+     * 
+     *  @param {string} [cityId] - Id of city to be deleted
+     * 
+     * @returns {undefined}
+     */
     deleteCity(cityId) {
       this.cityList = this.cityList.filter(city => city.id !== cityId);
     },
   },
   computed: {
+    /**
+     * automatically checks 
+     * if the cityName property is truthy or falsy
+     * 
+     * @returns {Boolean}
+     */
     isValid() {
       return !!this.cityName;
     },
