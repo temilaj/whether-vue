@@ -1,7 +1,9 @@
 import Vue from 'vue';
-import Home from '@/components/Home';
+import moxios from 'moxios';
 
+import Home from '@/components/Home';
 import cityList from '../mockData/cityList';
+import WeatherData from '../mockData/WeatherData';
 
 describe('Home.vue', () => {
   it('should render correct contents', () => {
@@ -45,12 +47,28 @@ describe('Home.vue', () => {
       done();
     });
   });
-  it("should delete city ", (done) => {
+  it("should delete city when the deleteCity method is called", (done) => {
     const HomeComponent = new Vue(Home).$mount();
     HomeComponent.cityList = cityList;
     HomeComponent.deleteCity(2141224);
     expect(HomeComponent.cityList.filter(city => city.id === 2141224)).to.deep.equal([]);
     expect(HomeComponent.cityList.filter(city => city.id !== 2141224).length).to.deep.equal(2);
     done();
+  });
+  it("should search for city when the handleCitySearch method is called", () => {
+    moxios.install();
+    const HomeComponent = new Vue(Home).$mount();
+    HomeComponent.cityName = 'lagos';
+    moxios.stubRequest(
+      `http://api.openweathermap.org/data/2.5/weather?q=lagos&appid=${process.env.API_KEY}`,
+      {
+        status: 200,
+        response: WeatherData,
+      },
+    );
+    HomeComponent.handleCitySearch().then((response) => {
+      expect(response.data).to.deep.equal(WeatherData);
+    });
+    moxios.uninstall();
   });
 });
