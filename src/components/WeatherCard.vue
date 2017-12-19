@@ -34,9 +34,25 @@ export default {
     'weatherData',
   ],
   methods: {
+    /**
+     * takes in a temperature in Kelvin, 
+     * and returns the temparature in Celcius
+     * 
+     * @param {number} temperature the temperature in Kelvin
+     * 
+     * @returns {number} the temperaturen in Celcius
+     */  
     formatTemperature(temperature) {
       return parseInt(temperature - 273, 10);
     },
+    /**
+     * takes in a temperature in Kelvin, 
+     * and returns the temparature in Celcius
+     * 
+     * @param {number} temperature the temperature in Kelvin
+     * 
+     * @@returns {undefined} 
+     */ 
     handleDelete(cityId) {
       this.$emit('handleDelete', cityId);
     },

@@ -39,6 +39,7 @@ module.exports = {
         'e' // for e.returnvalue
       ]
     }],
+    'no-trailing-spaces': 0,
     // allow optionalDependencies
     'import/no-extraneous-dependencies': ['error', {
       optionalDependencies: ['test/unit/index.js']
